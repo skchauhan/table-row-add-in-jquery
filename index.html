@@ -1,0 +1,53 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+	$('tr input').on('input', function() {
+  //Select all inputs in row of input that is changed and self (this or changed input)
+  var inputs = $(this).parent('td').siblings('td').andSelf().find('input');
+  
+  //Use map to return array of only values on inputs in row that is changed
+  var values = inputs.map(function() { return Number($(this).val())}).get();
+  
+  //Use reduce to sum array of values 
+  var sum = values.reduce((a, b) => { return a + b});
+  
+  //Find .result() cell in row that is changed
+   var result = $(this).parent().siblings('.result');
+  
+  //Check if sum is number or not and append sum or text msg
+  (isNaN(sum)) ? result.text('Numbers only') : result.text(sum);
+})
+})
+
+</script>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Size 1</th>
+    <th>Size 2</th>
+    <th>Size 3</th>
+    <th>TOTAL</th>
+   </tr>
+  <tr>
+    <td>A</td>
+    <td><input type="text" class="productA"></td>
+    <td><input type="text" class="productA"></td>
+    <td><input type="text" class="productA"></td>
+    <td class="result"></td>
+   </tr>
+  <tr>
+    <td>B</td>
+    <td><input type="text" class="productB"></td>
+    <td><input type="text" class="productB"></td>
+    <td><input type="text" class="productB"></td>
+    <td class="result"></td>
+   </tr>
+  <tr>
+    <td>C</td>
+    <td><input type="text" class="productC"></td>
+    <td><input type="text" class="productC"></td>
+    <td><input type="text" class="productC"></td>
+    <td class="result"></td>
+   </tr>
+ </table>
