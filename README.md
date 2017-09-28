@@ -1,1 +1,51 @@
 # table-row-add-in-jquery
+
+
+
+
+
+<table>
+   <tr>
+      <td><input type="text" value = "100"/></td>
+      <td><input type="text" value = "100"/></td>
+      <td><input type="text" value = "100"/></td>
+      <td class="total">300</td>
+   </tr>
+   <tr>
+      <td><input type="text" value = "200"/></td>
+      <td><input type="text" value = "200"/></td>
+      <td><input type="text" value = "200"/></td>
+      <td class="total">600</td>
+   </tr>
+</table>
+<script src="lib.js"></script>
+<script>
+
+$(document).ready(function(){
+    $("input").each(function() {
+        $(this).keyup(function(){
+            newSum.call(this);
+        });
+    });
+	var txtee = 0;
+    $('.total').each(function(index, el) {
+    	txtee += parseInt($(this).text());
+    	// console.log(index);
+    });
+    console.log(txtee);
+
+});
+
+function newSum() {
+    var sum = 0;
+    var thisRow = $(this).closest('tr');
+    //iterate through each input and add to sum
+    $(thisRow).find("td:not(.total) input").each(function() {
+            sum += parseInt(this.value);    
+    });
+    //change value of total
+    $(thisRow).find(".total").html(sum);
+}
+
+
+</script>
