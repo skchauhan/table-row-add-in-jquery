@@ -1,0 +1,29 @@
+<table>
+   <tr>
+      <td><input type="text" value = "100"/></td>
+      <td><input type="text" value = "100"/></td>
+      <td><input type="text" value = "100"/></td>
+      <td class="total">300</td>
+   </tr>
+   <tr>
+      <td><input type="text" value = "200"/></td>
+      <td><input type="text" value = "200"/></td>
+      <td><input type="text" value = "200"/></td>
+      <td class="total">600</td>
+   </tr>
+</table>
+<script src="lib.js"></script>
+<script>
+
+$(document).ready(function(){
+	$('table').each(function(){
+	  var totalPoints = 0;
+	  $(this).find('input').each(function(){
+	    totalPoints += parseInt($(this).val());
+	  });
+	  alert(totalPoints);
+	});  
+});
+
+
+</script>
